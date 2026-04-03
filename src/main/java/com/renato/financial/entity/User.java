@@ -1,8 +1,11 @@
 package com.renato.financial.entity;
 
+import lombok.Data;
+
 import java.util.UUID;
 
-public class user {
+@Data
+public class User {
 
     private UUID uuid;
     private String name;

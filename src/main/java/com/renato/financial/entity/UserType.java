@@ -1,5 +1,5 @@
 package com.renato.financial.entity;
 
-public enum userType {
+public enum UserType {
     FREE,PAYED;
 }
