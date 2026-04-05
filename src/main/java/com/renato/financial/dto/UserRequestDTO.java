@@ -9,17 +9,15 @@ import org.antlr.v4.runtime.misc.NotNull;
 public class UserRequestDTO {
 
     @NotNull
-    @NotBlank
+    @NotBlank(message = "Nome é obrigatório")
     private String name;
-    @NotNull
-    @NotBlank
     private String totalInvested;
     @NotNull
-    @NotBlank
+    @NotBlank(message = "Email é obrigatório")
     @Email
     private String email;
     @NotNull
-    @NotBlank
+    @NotBlank(message = "Password é obrigatório")
     private String passWord;
 
 }
