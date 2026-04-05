@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -36,6 +37,23 @@ public class UserService {
     public User getById(UUID uuid){
         return userRepository.getById(uuid);
 
+
+    }
+
+    public void deleteById(UUID uuid){
+        userRepository.deleteById(uuid);
+    }
+
+    public User updateById(UUID uuid, UserDTO userDTO){
+        Optional<User> Optionaluser = userRepository.findById(uuid);
+        User user = Optionaluser.orElseThrow();
+        user.setEmail(userDTO.getEmail());
+        user.setName(userDTO.getName());
+        user.setUuid(uuid);
+        user.setPassWord(userDTO.getPassWord());
+        userRepository.save(user);
+
+        return user;
 
     }
 
