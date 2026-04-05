@@ -1,6 +1,6 @@
 package com.renato.financial.controller;
 
-import com.renato.financial.dto.UserDTO;
+import com.renato.financial.dto.UserRequestDTO;
 import com.renato.financial.entity.User;
 import com.renato.financial.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +17,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public User createUser (@RequestBody UserDTO userDTO){
+    public User createUser (@RequestBody UserRequestDTO userRequestDTO){
 
-    return userService.createUser(userDTO);
+    return userService.createUser(userRequestDTO);
     }
 
     @GetMapping
@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @PutMapping("{uuid}")
-    public User updateById(@PathVariable UUID uuid, @RequestBody UserDTO userDTO){
-        return userService.updateById(uuid,userDTO);
+    public User updateById(@PathVariable UUID uuid, @RequestBody UserRequestDTO userRequestDTO){
+        return userService.updateById(uuid, userRequestDTO);
     }
 }

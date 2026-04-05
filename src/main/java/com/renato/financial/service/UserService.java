@@ -1,6 +1,7 @@
 package com.renato.financial.service;
 
-import com.renato.financial.dto.UserDTO;
+import com.renato.financial.dto.UserRequestDTO;
+import com.renato.financial.dto.UserResponseDTO;
 import com.renato.financial.entity.User;
 import com.renato.financial.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,15 +17,19 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public User createUser(UserDTO userDTO){
+    public UserResponseDTO createUser(UserRequestDTO userRequestDTO){
         User user = new User();
-        user.setEmail(userDTO.getEmail());
-        user.setName(userDTO.getName());
+        user.setEmail(userRequestDTO.getEmail());
+        user.setName(userRequestDTO.getName());
         user.setUuid(UUID.randomUUID());
-        user.setPassWord(userDTO.getPassWord());
         userRepository.save(user);
 
-        return user;
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+        userResponseDTO.setEmail(user.getEmail());
+        userResponseDTO.setName(user.getName());
+        userResponseDTO.setUuid(user.getUuid());
+
+        return userResponseDTO;
     }
 
     public List<User> getAll(){
@@ -44,13 +49,13 @@ public class UserService {
         userRepository.deleteById(uuid);
     }
 
-    public User updateById(UUID uuid, UserDTO userDTO){
+    public User updateById(UUID uuid, UserRequestDTO userRequestDTO){
         Optional<User> Optionaluser = userRepository.findById(uuid);
         User user = Optionaluser.orElseThrow();
-        user.setEmail(userDTO.getEmail());
-        user.setName(userDTO.getName());
+        user.setEmail(userRequestDTO.getEmail());
+        user.setName(userRequestDTO.getName());
         user.setUuid(uuid);
-        user.setPassWord(userDTO.getPassWord());
+        user.setPassWord(userRequestDTO.getPassWord());
         userRepository.save(user);
 
         return user;
