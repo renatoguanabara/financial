@@ -1,6 +1,7 @@
 package com.renato.financial.controller;
 
 import com.renato.financial.dto.UserRequestDTO;
+import com.renato.financial.dto.UserResponseDTO;
 import com.renato.financial.entity.User;
 import com.renato.financial.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public User createUser (@RequestBody UserRequestDTO userRequestDTO){
+    public UserResponseDTO createUser (@RequestBody UserRequestDTO userRequestDTO){
 
     return userService.createUser(userRequestDTO);
     }
