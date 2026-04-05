@@ -4,6 +4,7 @@ import com.renato.financial.dto.UserRequestDTO;
 import com.renato.financial.dto.UserResponseDTO;
 import com.renato.financial.entity.User;
 import com.renato.financial.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public UserResponseDTO createUser (@RequestBody UserRequestDTO userRequestDTO){
+    public UserResponseDTO createUser (@Valid @RequestBody UserRequestDTO userRequestDTO){
 
     return userService.createUser(userRequestDTO);
     }
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("{uuid}")
-    public User updateById(@PathVariable UUID uuid, @RequestBody UserRequestDTO userRequestDTO){
+    public User updateById(@Valid @PathVariable UUID uuid, @RequestBody UserRequestDTO userRequestDTO){
         return userService.updateById(uuid, userRequestDTO);
     }
 }
