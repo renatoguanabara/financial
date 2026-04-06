@@ -25,12 +25,12 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getAllUsers (){
+    public List<UserResponseDTO> getAllUsers (){
         return userService.getAll();
     }
 
     @GetMapping("{uuid}")
-    public User getUserById(@PathVariable UUID uuid){
+    public UserResponseDTO getUserById(@PathVariable UUID uuid){
         return userService.getById(uuid);
     }
 
@@ -40,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("{uuid}")
-    public User updateById(@Valid @PathVariable UUID uuid, @RequestBody UserRequestDTO userRequestDTO){
+    public UserResponseDTO updateById(@Valid @PathVariable UUID uuid, @RequestBody UserRequestDTO userRequestDTO){
         return userService.updateById(uuid, userRequestDTO);
     }
 }

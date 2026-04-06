@@ -32,15 +32,33 @@ public class UserService {
         return userResponseDTO;
     }
 
-    public List<User> getAll(){
-        return userRepository.findAll();
+    public List<UserResponseDTO> getAll(){
+        return userRepository.findAll()
+                .stream()
+                .map(user -> {
+                    UserResponseDTO userResponseDTO = new UserResponseDTO();
+                    userResponseDTO.setName(user.getName());
+                    userResponseDTO.setEmail(user.getEmail());
+                    userResponseDTO.setUuid(user.getUuid());
+                    return userResponseDTO;
+                        }
+
+                ).toList();
 
 
     }
 
 
-    public User getById(UUID uuid){
-        return userRepository.getById(uuid);
+    public UserResponseDTO getById(UUID uuid){
+
+        Optional<User> OptionalUser = userRepository.findById(uuid);
+        User user = OptionalUser.orElseThrow();
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+        userResponseDTO.setName(user.getName());
+        userResponseDTO.setEmail(user.getEmail());
+        userResponseDTO.setUuid(user.getUuid());
+
+        return userResponseDTO;
 
 
     }
@@ -49,7 +67,7 @@ public class UserService {
         userRepository.deleteById(uuid);
     }
 
-    public User updateById(UUID uuid, UserRequestDTO userRequestDTO){
+    public UserResponseDTO updateById(UUID uuid, UserRequestDTO userRequestDTO){
         Optional<User> Optionaluser = userRepository.findById(uuid);
         User user = Optionaluser.orElseThrow();
         user.setEmail(userRequestDTO.getEmail());
@@ -58,7 +76,12 @@ public class UserService {
         user.setPassWord(userRequestDTO.getPassWord());
         userRepository.save(user);
 
-        return user;
+        UserResponseDTO userResponseDTO = new UserResponseDTO();
+        userResponseDTO.setName(user.getName());
+        userResponseDTO.setEmail(user.getEmail());
+        userResponseDTO.setUuid(user.getUuid());
+
+        return userResponseDTO;
 
     }
 
