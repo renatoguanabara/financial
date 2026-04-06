@@ -77,5 +77,5 @@ Este projeto foi desenvolvido com o objetivo de praticar e demonstrar:
 ## 👨‍💻 Autor
 
 Renato
-GitHub: https://github.com/seu-usuario
-LinkedIn: https://linkedin.com/in/seu-perfil
+
+LinkedIn: https://www.linkedin.com/in/renato-dario-guanabara/
