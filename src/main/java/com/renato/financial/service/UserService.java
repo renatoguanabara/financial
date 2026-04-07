@@ -22,6 +22,7 @@ public class UserService {
         user.setEmail(userRequestDTO.getEmail());
         user.setName(userRequestDTO.getName());
         user.setUuid(UUID.randomUUID());
+        user.setWallet();
         userRepository.save(user);
 
         UserResponseDTO userResponseDTO = new UserResponseDTO();

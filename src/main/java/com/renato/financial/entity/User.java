@@ -20,4 +20,5 @@ public class User {
     private String userTypePayedOrFree;
     @JsonIgnore
     private String passWord;
+    private Wallet wallet;
 }
