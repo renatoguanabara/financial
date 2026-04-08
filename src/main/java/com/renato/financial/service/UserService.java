@@ -2,8 +2,12 @@ package com.renato.financial.service;
 
 import com.renato.financial.dto.UserRequestDTO;
 import com.renato.financial.dto.UserResponseDTO;
+import com.renato.financial.dto.WalletRequestDTO;
+import com.renato.financial.dto.WalletResponseDTO;
 import com.renato.financial.entity.User;
+import com.renato.financial.entity.Wallet;
 import com.renato.financial.repository.UserRepository;
+import com.renato.financial.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +20,37 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final WalletRepository walletRepository;
 
     public UserResponseDTO createUser(UserRequestDTO userRequestDTO){
         User user = new User();
         user.setEmail(userRequestDTO.getEmail());
         user.setName(userRequestDTO.getName());
         user.setUuid(UUID.randomUUID());
-        user.setWallet();
+
+        Wallet wallet = new Wallet();
+        wallet.setUuid(UUID.randomUUID());
+        wallet.setBalance(userRequestDTO.getWallet().getBalance());
+        wallet.setInvestiment(userRequestDTO.getWallet().getInvestiment());
+
+
+        user.setWallet(wallet);
+
         userRepository.save(user);
+
 
         UserResponseDTO userResponseDTO = new UserResponseDTO();
         userResponseDTO.setEmail(user.getEmail());
         userResponseDTO.setName(user.getName());
         userResponseDTO.setUuid(user.getUuid());
+
+
+        WalletResponseDTO walletDTO = new WalletResponseDTO();
+        walletDTO.setUuid(wallet.getUuid());
+        walletDTO.setBalance(wallet.getBalance());
+        walletDTO.setInvestimentType(wallet.getInvestiment());
+
+        userResponseDTO.setWallet(wallet);
 
         return userResponseDTO;
     }

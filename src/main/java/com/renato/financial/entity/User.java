@@ -1,9 +1,7 @@
 package com.renato.financial.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.UUID;
@@ -20,5 +18,7 @@ public class User {
     private String userTypePayedOrFree;
     @JsonIgnore
     private String passWord;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Wallet")
     private Wallet wallet;
 }
