@@ -31,7 +31,7 @@ public class UserService {
         Wallet wallet = new Wallet();
         wallet.setUuid(UUID.randomUUID());
         wallet.setBalance(userRequestDTO.getWallet().getBalance());
-        wallet.setInvestiment(userRequestDTO.getWallet().getInvestiment());
+        wallet.setInvestimentType(userRequestDTO.getWallet().getInvestimentType());
 
 
         user.setWallet(wallet);
@@ -48,7 +48,7 @@ public class UserService {
         WalletResponseDTO walletDTO = new WalletResponseDTO();
         walletDTO.setUuid(wallet.getUuid());
         walletDTO.setBalance(wallet.getBalance());
-        walletDTO.setInvestimentType(wallet.getInvestiment());
+        walletDTO.setInvestimentType(wallet.getInvestimentType());
 
         userResponseDTO.setWallet(wallet);
 
