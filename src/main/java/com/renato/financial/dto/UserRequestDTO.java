@@ -21,5 +21,6 @@ public class UserRequestDTO {
     @NotBlank(message = "Password é obrigatório")
     private String passWord;
     private Wallet wallet;
+    private BillsRequestDTO billsRequestDTO;
 
 }

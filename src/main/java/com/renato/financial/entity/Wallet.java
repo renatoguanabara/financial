@@ -1,9 +1,7 @@
 package com.renato.financial.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.UUID;
@@ -17,4 +15,7 @@ public class Wallet {
     private UUID uuid;
     private double balance;
     private String investimentType;
+    @OneToMany
+    @JoinColumn(name = "Bills")
+    private Bills bills;
 }

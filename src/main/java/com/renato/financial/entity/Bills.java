@@ -18,4 +18,5 @@ public class Bills {
     private double value;
     private String type;
 
+
 }
