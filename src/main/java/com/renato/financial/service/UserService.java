@@ -4,6 +4,7 @@ import com.renato.financial.dto.UserRequestDTO;
 import com.renato.financial.dto.UserResponseDTO;
 import com.renato.financial.dto.WalletRequestDTO;
 import com.renato.financial.dto.WalletResponseDTO;
+import com.renato.financial.entity.Bills;
 import com.renato.financial.entity.User;
 import com.renato.financial.entity.Wallet;
 import com.renato.financial.repository.UserRepository;
@@ -33,7 +34,14 @@ public class UserService {
         wallet.setBalance(userRequestDTO.getWallet().getBalance());
         wallet.setInvestimentType(userRequestDTO.getWallet().getInvestimentType());
 
+        Bills bills = new Bills();
+        bills.setUuid(UUID.randomUUID());
+        bills.setName(userRequestDTO.getWallet().getBills().getName());
+        bills.setType(userRequestDTO.getWallet().getBills().getType());
+        bills.setValue(userRequestDTO.getWallet().getBills().getValue());
 
+
+        wallet.setBills(bills);
         user.setWallet(wallet);
 
         userRepository.save(user);

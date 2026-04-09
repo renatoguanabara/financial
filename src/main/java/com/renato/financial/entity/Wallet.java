@@ -15,7 +15,7 @@ public class Wallet {
     private UUID uuid;
     private double balance;
     private String investimentType;
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "Bills")
     private Bills bills;
 }

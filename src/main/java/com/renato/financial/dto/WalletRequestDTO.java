@@ -1,5 +1,6 @@
 package com.renato.financial.dto;
 
+import com.renato.financial.entity.Bills;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -16,4 +17,5 @@ public class WalletRequestDTO {
     @NotNull
     @NotBlank(message = "O tipo de investimeno nao pode ser nulo ou em branco")
     private String investimentType;
+    private Bills bills;
 }
