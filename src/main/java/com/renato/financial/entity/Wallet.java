@@ -15,7 +15,7 @@ public class Wallet {
     private UUID uuid;
     private double balance;
     private String investimentType;
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Bills")
     private Bills bills;
 }
