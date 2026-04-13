@@ -18,4 +18,7 @@ public class Wallet {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Bills")
     private Bills bills;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Investment")
+    private Investment investment;
 }
