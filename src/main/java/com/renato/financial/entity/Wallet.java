@@ -4,6 +4,8 @@ package com.renato.financial.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +20,7 @@ public class Wallet {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Bills")
     private Bills bills;
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Investment")
-    private Investment investment;
+    @OneToMany(mappedBy = "wallet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Investment> investment = new ArrayList<>();
 }

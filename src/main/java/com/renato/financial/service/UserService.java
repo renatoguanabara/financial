@@ -8,7 +8,6 @@ import com.renato.financial.entity.Bills;
 import com.renato.financial.entity.User;
 import com.renato.financial.entity.Wallet;
 import com.renato.financial.repository.UserRepository;
-import com.renato.financial.repository.WalletRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +20,7 @@ import java.util.UUID;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final WalletRepository walletRepository;
+
 
     public UserResponseDTO createUser(UserRequestDTO userRequestDTO){
         User user = new User();
